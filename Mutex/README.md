@@ -1,5 +1,7 @@
 ## Mutex 
 
+![Captura de Tela 2023-01-10 às 15 52 08](https://user-images.githubusercontent.com/75685022/211637033-db7c8951-e273-4556-bb13-dfde4a795e35.png)
+
 
 
 Mutex permite que você lide com situação de race condition (concorrência)
