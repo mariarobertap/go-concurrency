@@ -111,6 +111,7 @@ func main() {
 	//Not using mutex because its only one go-routine trying to access the pizza data.
 	go pizzaria(pizzaJob)
 
+    //CONSUMER - consumes the pizzaria data
 	//Similiar to a wait group. This for talks to the go routine to see the status of the pizzas
 	for i := range pizzaJob.data {
 		if i.pizzaNumber <= NumberOfPizzas {
