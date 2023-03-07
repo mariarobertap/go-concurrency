@@ -37,7 +37,10 @@ func main() {
 func shout(receiver <-chan string, sender chan<- string) {
 
 	for {
-		s := <-receiver
+		s, ok := <-receiver
+		if !ok {
+			fmt.Println("Channel is closed.")
+		}
 		sender <- fmt.Sprintf("%s!!", strings.ToUpper(s))
 	}
 }

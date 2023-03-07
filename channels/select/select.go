@@ -24,6 +24,7 @@ func main() {
 			fmt.Println("CASE 3 - ", s3)
 		case s4 := <-ch2:
 			fmt.Println("CASE 4 - ", s4)
+			//default - default case can also be used to avoid deadlocks
 		}
 	}
 
