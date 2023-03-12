@@ -15,7 +15,7 @@ Você também ira encontrar uma lista com alguns exercícios conhecidos para pra
 # Tópicos
 
 -  [Goroutines](https://github.com/mariarobertap/go-concurrency/tree/main/goroutine) 
--  [Waigroups](https://github.com/mariarobertap/go-concurrency/tree/main/Waitgroups) 
+-  [Waigroups](https://github.com/mariarobertap/go-concurrency/tree/main/waitGroups) 
 -  [Channels](https://github.com/mariarobertap/go-concurrency/tree/main/channels) 
 -  [Mutex](https://github.com/mariarobertap/go-concurrency/tree/main/Mutex) 
 
