@@ -1,2 +1,2 @@
 # go-concurrency
-How concurrency in go works?
+Esse repo contém exemplos utilizando goroutines, mutex, waitgroups e channels. Contém explicações e alguns exercícios.
