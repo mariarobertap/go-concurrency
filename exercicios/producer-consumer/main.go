@@ -24,7 +24,6 @@ type PizzaOrder struct {
 }
 
 func makePizza(pizzaId int) *PizzaOrder {
-	//Not using mutex because its only one go-routine trying to access the pizza data.
 	pizzaId++
 
 	if pizzaId <= NumberOfPizzas {
@@ -108,11 +107,9 @@ func main() {
 		quit: make(chan chan error),
 	}
 
-	//Not using mutex because its only one go-routine trying to access the pizza data.
 	go pizzaria(pizzaJob)
 
-    //CONSUMER - consumes the pizzaria data
-	//Similiar to a wait group. This for talks to the go routine to see the status of the pizzas
+	//CONSUMER - consumes the pizzaria data
 	for i := range pizzaJob.data {
 		if i.pizzaNumber <= NumberOfPizzas {
 			if i.success {

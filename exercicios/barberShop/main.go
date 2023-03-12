@@ -29,7 +29,7 @@ func main() {
 	color.Yellow("The Sleeping Barber Problem")
 	color.Yellow("---------------------------")
 
-	//This is a buffered channel, with size equal to the seating capacity of the barber shop
+	//Esse é um buffered channel, com o tamanho == ao tamanho da capacidade de clientes da barbearia.
 	clientChan := make(chan string, seatingCapacity)
 	doneChan := make(chan bool)
 
@@ -48,7 +48,7 @@ func main() {
 	shopClosing := make(chan bool)
 	closed := make(chan bool)
 
-	//Checking if its time to close the barber shop
+	//Verificando se 10s já se passaram para fechar a loja
 	go func() {
 		//Waiting until is time to close the store.
 		<-time.After(timeOpen)
@@ -59,7 +59,7 @@ func main() {
 	}()
 
 	i := 0
-	//Sendind clients to the barber shop
+	//Enviando clientes para a barbearia.
 	go func() {
 		for {
 			//get a random number with average arrival date
@@ -75,7 +75,7 @@ func main() {
 		}
 	}()
 
-	//Wait until everything is done.
+	//Esperando até que tudo estiver finalizado.
 	<-closed
 
 }
@@ -93,9 +93,11 @@ func (shop *BarberShop) AddBarber(barberName string) {
 				isSleeping = true
 			}
 
-			//Check if the channel is closed.
-			//If is closed means that a loja esta fechada
-			//Mas ainda pode ter dados nos buffer
+			//Verifica se o canal está fechado.
+			//Se estiver, significa que a loja está fechada.
+			//Mas como é um buffered channel, ainda pode ter dados no buffer.
+			//Atendendo o critério do exercicio, que se a loja estiver fechada
+			//ainda pode ter clientes na sala de espera.
 			client, open := <-shop.ClientsChan
 
 			if open {
@@ -125,10 +127,10 @@ func (shop *BarberShop) sendBarberHome(barberName string) {
 
 }
 func (shop *BarberShop) closeShopForDay() {
-	color.Cyan("Closing shop for the day")
-	//Cant accept anymore clients, because the shop is closed. But the ones that is still
-	//waiting in the buffer will have their hair cut
 
+	color.Cyan("Closing shop for the day")
+	//Fechando o canal para não aceitar novos clientes na sala de espera.
+	//Os que ainda estáo esperando, continuam até serem atendidos.
 	close(shop.ClientsChan)
 	shop.Open = false
 
